@@ -1,8 +1,4 @@
-FROM ubuntu:trusty
-RUN apt-get update \
-    && apt-get install -y \
-        openjdk-8-jdk \
-    && rm -rf /var/lib/apt/lists/*
-
-
-ENTRYPOINT ["/usr/bin/java"]
+FROM openjdk:8
+EXPOSE 8080
+ADD target/products-docker.jar products-docker.jar
+ENTRYPOINT ["java","jar","/products-docker.jar"]
